@@ -103,6 +103,32 @@ Software:
 * Conda environment `mamba env create -f conda_environment_real.yaml`
 
 ## 🖥️ Reproducing Simulation Benchmark Results 
+### Install with uv
+The checked-in `pyproject.toml` and `uv.lock` reproduce the Linux environment
+used for PushT image training. It uses Python 3.9 and the official PyTorch
+CUDA 12.8 wheels.
+
+```console
+[diffusion_policy]$ uv sync --frozen
+```
+
+For multi-seed Ray training, include the optional dependency:
+
+```console
+[diffusion_policy]$ uv sync --frozen --extra multirun
+```
+
+Run commands through the environment without activating it:
+
+```console
+[diffusion_policy]$ uv run --frozen python train.py --config-dir=. --config-name=image_pusht_diffusion_policy_cnn.yaml training.seed=42 training.device=cuda:0 hydra.run.dir='data/outputs/${now:%Y.%m.%d}/${now:%H.%M.%S}_${name}_${task_name}'
+```
+
+The CUDA environment requires Linux x86-64, a CUDA-capable NVIDIA GPU, and a
+driver compatible with CUDA 12.8. Optional real-robot, Kitchen, Block Push,
+R3M, and PyTorch3D components still require their task-specific system
+dependencies from the Conda environment files.
+
 ### Download Training Data
 Under the repo root, create data subdirectory:
 ```console

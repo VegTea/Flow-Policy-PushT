@@ -1,0 +1,85 @@
+[build-system]
+requires = ["setuptools==65.5.0", "wheel==0.38.4"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "diffusion-policy"
+version = "0.0.0"
+description = "Diffusion Policy for visuomotor policy learning"
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+dependencies = [
+    "accelerate==0.13.2",
+    "av==13.1.0",
+    "boto3==1.24.96",
+    "cffi==1.15.1",
+    "click==8.0.4",
+    "cmake==3.24.3",
+    "datasets==2.6.1",
+    "diffusers==0.11.1",
+    "dill==0.3.5.1",
+    "egl-probe==1.0.2",
+    "einops==0.4.1",
+    "gym==0.21.0",
+    "h5py==3.7.0",
+    "huggingface-hub==0.25.2",
+    "hydra-core==1.2.0",
+    "imagecodecs==2022.9.26",
+    "imageio==2.22.0",
+    "imageio-ffmpeg==0.4.7",
+    "matplotlib==3.6.1",
+    "numba==0.56.4",
+    "numcodecs==0.10.2",
+    "numpy==1.23.5",
+    "omegaconf==2.2.3",
+    "opencv-python==4.6.0.66",
+    "pandas==1.5.3",
+    "protobuf==3.19.6",
+    "psutil==5.9.2",
+    "pygame==2.1.2",
+    "pymunk==6.2.1",
+    "robomimic==0.2.0",
+    "scikit-image==0.19.3",
+    "scikit-video==1.1.11",
+    "scipy==1.9.1",
+    "setuptools<81",
+    "shapely==1.8.4",
+    "tensorboard==2.10.1",
+    "tensorboardx==2.5.1",
+    "termcolor==2.0.1",
+    "threadpoolctl==3.1.0",
+    "torch==2.7.1",
+    "torchvision==0.22.1",
+    "tqdm==4.64.1",
+    "wandb==0.13.3",
+    "zarr==2.12.0",
+]
+
+[project.optional-dependencies]
+multirun = [
+    "ray[default,tune]==2.2.0",
+]
+
+[tool.setuptools.packages.find]
+include = ["diffusion_policy*"]
+
+[tool.uv]
+required-version = ">=0.11.0"
+environments = [
+    "sys_platform == 'linux' and platform_machine == 'x86_64'",
+]
+build-constraint-dependencies = [
+    "setuptools<66",
+    "wheel==0.38.4",
+]
+
+[[tool.uv.index]]
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
+explicit = true
+
+[tool.uv.sources]
+egl-probe = { path = "vendor/egl_probe_stub" }
+gym = { path = "vendor/wheels/gym-0.21.0-py3-none-any.whl" }
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
