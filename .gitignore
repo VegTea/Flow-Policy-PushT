@@ -5,6 +5,8 @@ outputs
 data
 data_local
 .vscode
+.claude
+.sii
 _wandb
 
 **/.DS_Store
