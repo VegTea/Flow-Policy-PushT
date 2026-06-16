@@ -106,7 +106,7 @@ Software:
 ### Install with uv
 The checked-in `pyproject.toml` and `uv.lock` reproduce the Linux environment
 used for PushT image training. It uses Python 3.9 and the official PyTorch
-CUDA 12.8 wheels.
+CUDA 12.4 wheels.
 
 ```console
 [diffusion_policy]$ uv sync --frozen
@@ -125,7 +125,7 @@ Run commands through the environment without activating it:
 ```
 
 The CUDA environment requires Linux x86-64, a CUDA-capable NVIDIA GPU, and a
-driver compatible with CUDA 12.8. Optional real-robot, Kitchen, Block Push,
+driver compatible with CUDA 12.4. Optional real-robot, Kitchen, Block Push,
 R3M, and PyTorch3D components still require their task-specific system
 dependencies from the Conda environment files.
 
